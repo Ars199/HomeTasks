@@ -1,0 +1,107 @@
+﻿package ChromeDrive;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BookingDRIVE {
+
+	public static void main(String[] args) {
+		String exePath = "F:\\PVT_QAutomation\\chromedriver1\\chromedriver1.exe";
+		System.setProperty("webdriver.chrome.driver", exePath);
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://booking.com");
+		//driver.manage().timeouts().pageLoadTimeout(7, TimeUnit.SECONDS);
+
+		WebElement searchLine = driver.findElement(By.xpath("//*[@id='ss']"));
+		searchLine.sendKeys("Москва");
+		try {
+			Thread.sleep(5000);// (1)
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// -----------------------input Moscow
+
+		WebElement searchButton = driver.findElement(By.xpath("//*[@id=\"frm\"]/div[1]/div[4]/div[2]/button"));
+		searchButton.click();
+
+		try {
+			Thread.sleep(5000);// (2)
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// -----------------------Search button
+	
+
+		WebElement checkIN = driver.findElement(By.xpath(
+				"//*[@id='frm']/div[3]/div/div[1]/div[1]/div/div/div[2]/div[2]/div[3]/div/div/div[1]/table/tbody/tr[4]/td[2]"));
+		checkIN.click();
+
+		try {
+			Thread.sleep(5000);// (3)
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// -----------------------Sleep after checkIN date
+
+		WebElement calendarDropDown = driver
+				.findElement(By.xpath("//*[@id='frm']/div[3]/div/div[1]/div[2]/div/div/div[1]/div/i"));
+		calendarDropDown.click();
+
+		try {
+			Thread.sleep(5000);// (4)
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// -----------------------Sleep after DropDown opens
+
+		WebElement checkOUT = driver.findElement(By.xpath(
+				"//*[@id=\'frm\']/div[3]/div/div[1]/div[2]/div/div/div[2]/div[2]/div[3]/div/div/div[2]/table/tbody/tr[2]/td[1]"));
+		checkOUT.click();
+
+		try {
+			Thread.sleep(5000);// (5)
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// -----------------------Sleep after checkOUT date
+
+		WebElement room = driver.findElement(By.xpath("//*[@id='no_rooms']/option[2]"));
+		room.click();
+
+		try {
+			Thread.sleep(5000);// (6)
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// -----------------------Sleep after room is chosen
+
+		WebElement adults = driver.findElement(By.xpath("//*[@id='group_adults']/option[3]"));
+		adults.click();
+
+		try {
+			Thread.sleep(5000);// (7)
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// -----------------------Sleep after adults qty is chosen
+
+		WebElement innerSearchButton = driver.findElement(By.xpath("//*[@id=\'frm\']/div[5]/div[2]/button"));
+		innerSearchButton.click();
+
+		try {
+			Thread.sleep(5000);// (8)
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// -----------------------Sleep after innerSearchButton clicked
+
+		WebElement firstHotel = driver
+				.findElement(By.xpath("//*[@id=\'hotellist_inner\']/div[1]/div[2]/div[1]/div[1]/h3/a/span[1]"));
+		firstHotel.click();
+
+	}
